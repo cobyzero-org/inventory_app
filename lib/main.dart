@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           title: 'Material App',
           getPages: router,
-          initialRoute: "/login",
+          initialRoute: "/splash",
         );
       },
     );
