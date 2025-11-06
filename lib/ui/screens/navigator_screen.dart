@@ -34,53 +34,61 @@ class NavigatorScreen extends GetView<NavigatorController> {
         child: SafeArea(
           child: Row(
             children: [
-              NavigatorItem(
-                icon: Icons.home,
-                title: "Home",
-                isSelected: controller.currentIndex.value == 0,
-                onTap: () {
-                  controller.pageController.animateToPage(
-                    0,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
-                },
+              Obx(
+                () => NavigatorItem(
+                  icon: Icons.home,
+                  title: "Home",
+                  isSelected: controller.currentIndex.value == 0,
+                  onTap: () {
+                    controller.pageController.animateToPage(
+                      0,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                ),
               ),
-              NavigatorItem(
-                icon: Icons.list,
-                title: "Productos",
-                isSelected: controller.currentIndex.value == 1,
-                onTap: () {
-                  controller.pageController.animateToPage(
-                    1,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
-                },
+              Obx(
+                () => NavigatorItem(
+                  icon: Icons.list,
+                  title: "Productos",
+                  isSelected: controller.currentIndex.value == 1,
+                  onTap: () {
+                    controller.pageController.animateToPage(
+                      1,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                ),
               ),
-              NavigatorItem(
-                icon: Icons.add,
-                title: "Agregar",
-                isSelected: controller.currentIndex.value == 2,
-                onTap: () {
-                  controller.pageController.animateToPage(
-                    2,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
-                },
+              Obx(
+                () => NavigatorItem(
+                  icon: Icons.add,
+                  title: "Agregar",
+                  isSelected: controller.currentIndex.value == 2,
+                  onTap: () {
+                    controller.pageController.animateToPage(
+                      2,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                ),
               ),
-              NavigatorItem(
-                icon: Icons.qr_code,
-                title: "Scanner",
-                isSelected: controller.currentIndex.value == 3,
-                onTap: () {
-                  controller.pageController.animateToPage(
-                    3,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
-                },
+              Obx(
+                () => NavigatorItem(
+                  icon: Icons.qr_code,
+                  title: "Scanner",
+                  isSelected: controller.currentIndex.value == 3,
+                  onTap: () {
+                    controller.pageController.animateToPage(
+                      3,
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                  },
+                ),
               ),
             ],
           ),
