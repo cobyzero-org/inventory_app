@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:inventory_app/core/utils/constants.dart';
 import 'package:inventory_app/core/utils/palette.dart';
 import 'package:inventory_app/ui/widgets/app_text.dart';
@@ -10,12 +11,15 @@ class AppAppbar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     required this.subtitle,
     required this.icon,
+    this.showBackButton = false,
+    this.action,
   });
 
   final String title;
   final String subtitle;
   final Widget icon;
-
+  final bool showBackButton;
+  final Widget? action;
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -52,8 +56,15 @@ class AppAppbar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ],
       ),
-      leading: SizedBox.shrink(),
-      leadingWidth: 0,
+      leading: showBackButton
+          ? IconButton(
+              padding: EdgeInsets.zero,
+              onPressed: () => Get.back(),
+              icon: const Icon(Icons.arrow_back),
+            )
+          : SizedBox.shrink(),
+      leadingWidth: showBackButton ? 13.w : 0,
+      actions: [if (action != null) action!],
     );
   }
 

@@ -9,22 +9,30 @@ class AppText extends StatelessWidget {
     this.color = Palette.black,
     this.fontWeight,
     this.fontSize = 15,
+    this.maxLines,
+    this.overflow,
   });
   final String text;
   final Color? color;
   final FontWeight? fontWeight;
   final double fontSize;
+  final int? maxLines;
+  final TextOverflow? overflow;
 
   factory AppText.regular({
     required String text,
     Color? color,
     double fontSize = 15,
+    int? maxLines,
+    TextOverflow? overflow,
   }) {
     return AppText(
       text: text,
       color: color,
       fontWeight: FontWeight.normal,
       fontSize: fontSize,
+      maxLines: maxLines,
+      overflow: overflow,
     );
   }
 
@@ -32,12 +40,16 @@ class AppText extends StatelessWidget {
     required String text,
     Color? color,
     double fontSize = 15,
+    int? maxLines,
+    TextOverflow? overflow,
   }) {
     return AppText(
       text: text,
       color: color,
       fontWeight: FontWeight.bold,
       fontSize: fontSize,
+      maxLines: maxLines,
+      overflow: overflow,
     );
   }
 
@@ -50,6 +62,8 @@ class AppText extends StatelessWidget {
         fontWeight: fontWeight,
         fontSize: fontSize.sp,
       ),
+      maxLines: maxLines,
+      overflow: overflow,
     );
   }
 }

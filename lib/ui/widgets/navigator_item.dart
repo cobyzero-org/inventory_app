@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_app/core/utils/palette.dart';
 import 'package:inventory_app/ui/widgets/app_text.dart';
+import 'package:sizer/sizer.dart';
 
 class NavigatorItem extends StatelessWidget {
   const NavigatorItem({
@@ -28,9 +29,10 @@ class NavigatorItem extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                size: 20,
+                size: 18.sp,
                 color: isSelected ? Palette.primary : Colors.grey,
               ),
+              SizedBox(height: 1.h),
               AppText.regular(
                 text: title,
                 fontSize: 14,

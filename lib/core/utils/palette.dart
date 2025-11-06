@@ -15,4 +15,8 @@ class Palette {
 
   static final border = Palette.gray.withValues(alpha: 0.3);
   static final fill = primary.withValues(alpha: 0.1);
+  static const greenOpacity = Color(0xFFDBFCE7);
+  static const redOpacity = Color(0xFFFEE2E3);
+  static const green = Color(0xFF017A95);
+  static const red = Color(0xFFC01D12);
 }

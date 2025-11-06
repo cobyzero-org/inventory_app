@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:inventory_app/app/controllers/products_controller.dart';
-import 'package:inventory_app/core/utils/constants.dart';
+import 'package:get/get.dart';
+import 'package:inventory_app/app/controllers/exits_controller.dart';
 import 'package:inventory_app/core/utils/palette.dart';
+import 'package:inventory_app/core/utils/constants.dart';
 import 'package:inventory_app/ui/widgets/app_appbar.dart';
 import 'package:inventory_app/ui/widgets/app_input.dart';
 import 'package:inventory_app/ui/widgets/app_text.dart';
-import 'package:inventory_app/ui/widgets/product_item.dart';
+import 'package:inventory_app/ui/widgets/exit_item.dart';
 import 'package:sizer/sizer.dart';
 
-class ProductsScreen extends GetView<ProductsController> {
-  const ProductsScreen({super.key});
+class ExitsScreen extends GetView<ExitsController> {
+  const ExitsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Palette.background,
       appBar: AppAppbar(
-        title: "Listado de productos",
+        showBackButton: true,
+        title: "Listado de salidas",
         subtitle: "Administra de manera eficiente",
-        icon: Icon(Icons.inventory_2_outlined),
+        icon: Icon(Icons.moving),
       ),
       body: RefreshIndicator(
-        onRefresh: () => controller.fetchProducts(),
+        onRefresh: () => controller.fetchExits(),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: Constants.padding),
           child: SingleChildScrollView(
+            physics: AlwaysScrollableScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -48,16 +49,16 @@ class ProductsScreen extends GetView<ProductsController> {
                 ),
                 Obx(() {
                   return AppText.regular(
-                    text: "${controller.products.length} Productos Listados",
+                    text: "${controller.exits.length} Salidas Listadas",
                     fontSize: 14,
                   );
                 }),
                 SizedBox(height: 2.h),
                 Obx(() {
-                  if (controller.products.isEmpty) {
+                  if (controller.exits.isEmpty) {
                     return Center(
                       child: AppText.regular(
-                        text: "No hay productos",
+                        text: "No hay salidas",
                         fontSize: 14,
                       ),
                     );
@@ -65,9 +66,9 @@ class ProductsScreen extends GetView<ProductsController> {
                   return ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: controller.products.length,
+                    itemCount: controller.exits.length,
                     itemBuilder: (context, index) {
-                      return ProductItem(product: controller.products[index]);
+                      return ExitItem(exit: controller.exits[index]);
                     },
                   );
                 }),

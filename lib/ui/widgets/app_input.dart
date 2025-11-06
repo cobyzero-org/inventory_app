@@ -6,14 +6,14 @@ import 'package:sizer/sizer.dart';
 
 class AppInput extends StatefulWidget {
   const AppInput({
-    Key? key,
+    super.key,
     this.controller,
     this.label,
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
     required this.hintText,
     this.prefixIcon,
-  }) : super(key: key);
+  });
   final TextEditingController? controller;
   final String? label;
   final TextInputType keyboardType;

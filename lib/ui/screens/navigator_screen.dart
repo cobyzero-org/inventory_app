@@ -1,39 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:inventory_app/app/controllers/navigator_controller.dart';
 import 'package:inventory_app/core/utils/palette.dart';
+import 'package:inventory_app/ui/screens/create_product_screen.dart';
 import 'package:inventory_app/ui/screens/home_screen.dart';
 import 'package:inventory_app/ui/screens/products_screen.dart';
+import 'package:inventory_app/ui/screens/scanner_screen.dart';
 import 'package:inventory_app/ui/widgets/navigator_item.dart';
 import 'package:sizer/sizer.dart';
 
-class NavigatorScreen extends StatefulWidget {
+class NavigatorScreen extends GetView<NavigatorController> {
   const NavigatorScreen({super.key});
-
-  @override
-  State<NavigatorScreen> createState() => _NavigatorScreenState();
-}
-
-class _NavigatorScreenState extends State<NavigatorScreen> {
-  final PageController _pageController = PageController();
-  int _currentIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController.addListener(_onPageChanged);
-  }
-
-  @override
-  void dispose() {
-    _pageController.removeListener(_onPageChanged);
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  void _onPageChanged() {
-    setState(() {
-      _currentIndex = _pageController.page!.toInt();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +37,9 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
               NavigatorItem(
                 icon: Icons.home,
                 title: "Home",
-                isSelected: _currentIndex == 0,
+                isSelected: controller.currentIndex.value == 0,
                 onTap: () {
-                  _pageController.animateToPage(
+                  controller.pageController.animateToPage(
                     0,
                     duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
@@ -70,11 +48,35 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
               ),
               NavigatorItem(
                 icon: Icons.list,
-                title: "Listado de productos",
-                isSelected: _currentIndex == 1,
+                title: "Productos",
+                isSelected: controller.currentIndex.value == 1,
                 onTap: () {
-                  _pageController.animateToPage(
+                  controller.pageController.animateToPage(
                     1,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+              NavigatorItem(
+                icon: Icons.add,
+                title: "Agregar",
+                isSelected: controller.currentIndex.value == 2,
+                onTap: () {
+                  controller.pageController.animateToPage(
+                    2,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+              NavigatorItem(
+                icon: Icons.qr_code,
+                title: "Scanner",
+                isSelected: controller.currentIndex.value == 3,
+                onTap: () {
+                  controller.pageController.animateToPage(
+                    3,
                     duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                   );
@@ -87,8 +89,19 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
       backgroundColor: Palette.background,
       body: SafeArea(
         child: PageView(
-          controller: _pageController,
-          children: [HomeScreen(), ProductsScreen()],
+          physics: NeverScrollableScrollPhysics(),
+          controller: controller.pageController,
+          children: [
+            Obx(
+              () => HomeScreen(
+                pageController: controller.pageController,
+                user: controller.user.value,
+              ),
+            ),
+            ProductsScreen(),
+            CreateProductScreen(),
+            ScannerScreen(),
+          ],
         ),
       ),
     );
