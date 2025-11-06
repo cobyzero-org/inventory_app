@@ -27,6 +27,7 @@ class ProductsController extends GetxController {
 
   Future<void> fetchProducts() async {
     try {
+      products.clear();
       final response = await supabase.from('products').select('*');
       for (var element in response) {
         final categoryResponse = await supabase

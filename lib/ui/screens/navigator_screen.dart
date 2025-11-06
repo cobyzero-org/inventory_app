@@ -37,7 +37,7 @@ class NavigatorScreen extends GetView<NavigatorController> {
               Obx(
                 () => NavigatorItem(
                   icon: Icons.home,
-                  title: "Home",
+                  title: "Inicio",
                   isSelected: controller.currentIndex.value == 0,
                   onTap: () {
                     controller.pageController.animateToPage(
@@ -79,7 +79,7 @@ class NavigatorScreen extends GetView<NavigatorController> {
               Obx(
                 () => NavigatorItem(
                   icon: Icons.qr_code,
-                  title: "Scanner",
+                  title: "Escaner",
                   isSelected: controller.currentIndex.value == 3,
                   onTap: () {
                     controller.pageController.animateToPage(

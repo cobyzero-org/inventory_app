@@ -15,7 +15,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 2));
+      //* COMPRUEBA SI EL USUARIO ESTA LOGUEADO
       var session = Supabase.instance.client.auth.currentUser;
       if (session != null) {
         Get.offAndToNamed('/navigator');
@@ -28,12 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Hero(
-          tag: "logo",
-          child: Image.asset("assets/images/logo.png", width: 45.w),
-        ),
-      ),
+      body: Center(child: Image.asset("assets/images/logo.png", width: 45.w)),
     );
   }
 }

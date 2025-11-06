@@ -20,10 +20,7 @@ class LoginScreen extends GetView<LoginController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox(height: 15.h),
-              Hero(
-                tag: "logo",
-                child: Image.asset("assets/images/logo.png", width: 45.w),
-              ),
+              Image.asset("assets/images/logo.png", width: 45.w),
               SizedBox(height: 9.h),
               AppText.bold(text: "Bienvenido de vuelta!", fontSize: 18),
               SizedBox(height: 4.h),

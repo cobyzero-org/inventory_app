@@ -6,6 +6,8 @@ class LoginController extends GetxController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final supabase = Supabase.instance.client;
+
+  //* LOGIN
   void login(BuildContext context) async {
     if (emailController.text.isEmpty || passwordController.text.isEmpty) {
       Get.snackbar("Error", "Por favor, completa todos los campos");
