@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventory_app/app/controllers/create_product_controller.dart';
+import 'package:inventory_app/app/controllers/add_product_controller.dart';
 import 'package:inventory_app/core/utils/constants.dart';
 import 'package:inventory_app/ui/widgets/app_appbar.dart';
 import 'package:inventory_app/ui/widgets/app_button.dart';
 import 'package:inventory_app/ui/widgets/app_dropdown.dart';
 import 'package:inventory_app/ui/widgets/app_input.dart';
 import 'package:inventory_app/ui/widgets/app_text.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
-class CreateProductScreen extends GetView<CreateProductController> {
-  const CreateProductScreen({super.key});
+class AddProductScreen extends GetView<AddProductController> {
+  const AddProductScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppAppbar(
         title: "Añadir un producto",
-        icon: const Icon(Icons.add),
+        icon: const Icon(Ionicons.add_outline, color: Colors.black),
         subtitle: "Agregar un nuevo producto al inventario",
       ),
       body: Padding(

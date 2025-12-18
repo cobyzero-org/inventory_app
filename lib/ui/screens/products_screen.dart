@@ -8,6 +8,7 @@ import 'package:inventory_app/ui/widgets/app_appbar.dart';
 import 'package:inventory_app/ui/widgets/app_input.dart';
 import 'package:inventory_app/ui/widgets/app_text.dart';
 import 'package:inventory_app/ui/widgets/product_item.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
 class ProductsScreen extends GetView<ProductsController> {
@@ -16,11 +17,10 @@ class ProductsScreen extends GetView<ProductsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Palette.background,
       appBar: AppAppbar(
         title: "Listado de productos",
         subtitle: "Administra de manera eficiente",
-        icon: Icon(Icons.inventory_2_outlined),
+        icon: Icon(Ionicons.cube_outline, color: Colors.black),
       ),
       body: RefreshIndicator(
         onRefresh: () => controller.fetchProducts(),
@@ -43,7 +43,7 @@ class ProductsScreen extends GetView<ProductsController> {
                   child: AppInput(
                     controller: controller.searchController,
                     hintText: "Buscar producto",
-                    prefixIcon: Icon(Icons.search),
+                    prefixIcon: Icon(Ionicons.search),
                   ),
                 ),
                 Obx(() {

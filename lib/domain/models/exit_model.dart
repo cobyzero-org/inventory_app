@@ -41,7 +41,6 @@ class ExitModel {
   );
 
   Map<String, dynamic> toJson() => {
-    'id': id,
     'product_id': productId,
     'client_id': clientId,
     'user_id': userId,

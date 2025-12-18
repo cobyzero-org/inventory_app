@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_app/core/utils/constants.dart';
 import 'package:inventory_app/core/utils/palette.dart';
-import 'package:inventory_app/domain/models/exit_model.dart';
+import 'package:inventory_app/domain/models/entry_model.dart';
 import 'package:inventory_app/ui/widgets/app_text.dart';
 
-class ExitItem extends StatelessWidget {
-  const ExitItem({super.key, required this.exit});
-  final ExitModel exit;
+class EntryItem extends StatelessWidget {
+  const EntryItem({super.key, required this.entry});
+  final EntryModel entry;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -35,13 +35,13 @@ class ExitItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppText.bold(
-                        text: exit.product?.name ?? "",
+                        text: entry.product?.name ?? "",
                         fontSize: 16,
                         color: Colors.black87,
                       ),
                       const SizedBox(height: 4),
                       AppText.regular(
-                        text: exit.product?.description ?? "",
+                        text: entry.product?.description ?? "",
                         fontSize: 13,
                         color: Colors.grey,
                         maxLines: 2,
@@ -69,13 +69,13 @@ class ExitItem extends StatelessWidget {
                     horizontal: 8,
                   ),
                   decoration: BoxDecoration(
-                    color: Palette.redOpacity,
+                    color: Palette.greenOpacity,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: AppText.regular(
-                    text: "Salida",
+                    text: "Entrada",
                     fontSize: 14,
-                    color: Palette.red,
+                    color: Palette.green,
                   ),
                 ),
               ],
@@ -92,13 +92,13 @@ class ExitItem extends StatelessWidget {
                 childAspectRatio: 3,
               ),
               children: [
-                _buildDetailItem('Cantidad', exit.quantity.toString()),
+                _buildDetailItem('Cantidad', entry.quantity.toString()),
                 _buildDetailItem(
                   'Precio unitario',
-                  exit.product?.unitPrice.toString() ?? "",
+                  entry.product?.unitPrice.toString() ?? "",
                 ),
-                _buildDetailItem('Cliente', exit.client?.name ?? ""),
-                _buildDetailItem('Dirección', exit.client?.address ?? ""),
+                _buildDetailItem('Cliente', entry.userId?.toString() ?? ""),
+                _buildDetailItem('Dirección', entry.client?.address ?? ""),
               ],
             ),
           ],

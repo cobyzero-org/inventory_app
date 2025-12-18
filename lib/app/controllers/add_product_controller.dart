@@ -5,7 +5,7 @@ import 'package:inventory_app/domain/models/category_model.dart';
 import 'package:inventory_app/domain/models/product_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class CreateProductController extends GetxController {
+class AddProductController extends GetxController {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController stockController = TextEditingController();

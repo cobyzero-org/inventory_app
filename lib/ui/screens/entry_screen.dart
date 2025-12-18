@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventory_app/app/controllers/exits_controller.dart';
+import 'package:inventory_app/app/controllers/entry_controller.dart';
 import 'package:inventory_app/core/utils/palette.dart';
 import 'package:inventory_app/core/utils/constants.dart';
 import 'package:inventory_app/ui/widgets/app_appbar.dart';
 import 'package:inventory_app/ui/widgets/app_button.dart';
 import 'package:inventory_app/ui/widgets/app_input.dart';
 import 'package:inventory_app/ui/widgets/app_text.dart';
-import 'package:inventory_app/ui/widgets/exit_item.dart';
+import 'package:inventory_app/ui/widgets/entry_item.dart';
 import 'package:sizer/sizer.dart';
 
-class ExitsScreen extends GetView<ExitsController> {
-  const ExitsScreen({super.key});
+class EntryScreen extends GetView<EntryController> {
+  const EntryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppAppbar(
         showBackButton: true,
-        title: "Listado de salidas",
+        title: "Listado de entradas",
         subtitle: "Administra de manera eficiente",
         icon: Icon(Icons.moving, color: Colors.black),
       ),
       body: RefreshIndicator(
-        onRefresh: () => controller.fetchExits(),
+        onRefresh: () => controller.fetchEntries(),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: Constants.padding),
           child: SingleChildScrollView(
@@ -33,8 +33,8 @@ class ExitsScreen extends GetView<ExitsController> {
               children: [
                 SizedBox(height: 2.h),
                 AppButton(
-                  onPressed: () => Get.toNamed('/add_exit'),
-                  label: "Agregar salida",
+                  onPressed: () => Get.toNamed('/add_entry'),
+                  label: "Agregar entrada",
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 2.h),
@@ -54,16 +54,16 @@ class ExitsScreen extends GetView<ExitsController> {
                 ),
                 Obx(() {
                   return AppText.regular(
-                    text: "${controller.exits.length} Salidas Listadas",
+                    text: "${controller.entries.length} Entradas Listadas",
                     fontSize: 14,
                   );
                 }),
                 SizedBox(height: 2.h),
                 Obx(() {
-                  if (controller.exits.isEmpty) {
+                  if (controller.entries.isEmpty) {
                     return Center(
                       child: AppText.regular(
-                        text: "No hay salidas",
+                        text: "No hay entradas",
                         fontSize: 14,
                       ),
                     );
@@ -71,9 +71,9 @@ class ExitsScreen extends GetView<ExitsController> {
                   return ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: controller.exits.length,
+                    itemCount: controller.entries.length,
                     itemBuilder: (context, index) {
-                      return ExitItem(exit: controller.exits[index]);
+                      return EntryItem(entry: controller.entries[index]);
                     },
                   );
                 }),

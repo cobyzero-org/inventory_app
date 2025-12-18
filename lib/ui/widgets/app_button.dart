@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_app/core/utils/palette.dart';
-import 'package:inventory_app/ui/widgets/app_text.dart';
-import 'package:sizer/sizer.dart';
-import 'package:inventory_app/core/utils/constants.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({super.key, required this.onPressed, required this.label});
@@ -11,16 +7,14 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return ElevatedButton(
       onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Palette.primary,
-        fixedSize: Size(100.w, 3.h),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadiusGeometry.circular(Constants.radius),
-        ),
+      style: ElevatedButton.styleFrom(minimumSize: Size(double.maxFinite, 1)),
+      child: Text(
+        label,
+        style: theme.textTheme.titleMedium!.copyWith(color: Colors.white),
       ),
-      child: AppText(text: label, color: Colors.white),
     );
   }
 }

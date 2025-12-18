@@ -4,7 +4,6 @@ import 'package:inventory_app/app/controllers/login_controller.dart';
 import 'package:inventory_app/core/utils/constants.dart';
 import 'package:inventory_app/ui/widgets/app_button.dart';
 import 'package:inventory_app/ui/widgets/app_input.dart';
-import 'package:inventory_app/ui/widgets/app_text.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginScreen extends GetView<LoginController> {
@@ -12,6 +11,7 @@ class LoginScreen extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(Constants.padding),
@@ -22,7 +22,7 @@ class LoginScreen extends GetView<LoginController> {
               SizedBox(height: 15.h),
               Image.asset("assets/images/logo.png", width: 45.w),
               SizedBox(height: 9.h),
-              AppText.bold(text: "Bienvenido de vuelta!", fontSize: 18),
+              Text("Bienvenido de vuelta!", style: theme.textTheme.titleLarge),
               SizedBox(height: 4.h),
               AppInput(
                 controller: controller.emailController,

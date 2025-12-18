@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_app/core/router/router.dart';
+import 'package:inventory_app/core/theme/app_theme.dart';
 import 'package:sizer/sizer.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
           title: 'Material App',
           getPages: router,
           initialRoute: "/splash",
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: ThemeMode.system,
         );
       },
     );

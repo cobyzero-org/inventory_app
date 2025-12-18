@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_app/core/utils/constants.dart';
-import 'package:inventory_app/core/utils/palette.dart';
-import 'package:inventory_app/ui/widgets/app_text.dart';
 import 'package:sizer/sizer.dart';
 
 class AppAppbar extends StatelessWidget implements PreferredSizeWidget {
@@ -22,10 +20,8 @@ class AppAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? action;
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return AppBar(
-      backgroundColor: Palette.white,
-      elevation: 1,
-      shadowColor: Palette.gray.withValues(alpha: 0.5),
       toolbarHeight: 8.h,
       title: Row(
         children: [
@@ -34,7 +30,7 @@ class AppAppbar extends StatelessWidget implements PreferredSizeWidget {
             height: 13.w,
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Palette.background,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(Constants.radius),
               boxShadow: [
                 BoxShadow(
@@ -47,12 +43,24 @@ class AppAppbar extends StatelessWidget implements PreferredSizeWidget {
             child: icon,
           ),
           SizedBox(width: 4.w),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppText.bold(text: title, fontSize: 16),
-              AppText.regular(text: subtitle, fontSize: 14),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: theme.textTheme.titleMedium!.copyWith(
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  subtitle,
+                  style: theme.textTheme.bodyMedium!.copyWith(
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

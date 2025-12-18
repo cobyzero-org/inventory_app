@@ -3,11 +3,12 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:inventory_app/app/controllers/navigator_controller.dart';
 import 'package:inventory_app/core/utils/palette.dart';
-import 'package:inventory_app/ui/screens/create_product_screen.dart';
+import 'package:inventory_app/ui/screens/add_product_screen.dart';
 import 'package:inventory_app/ui/screens/home_screen.dart';
 import 'package:inventory_app/ui/screens/products_screen.dart';
 import 'package:inventory_app/ui/screens/scanner_screen.dart';
 import 'package:inventory_app/ui/widgets/navigator_item.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:sizer/sizer.dart';
 
 class NavigatorScreen extends GetView<NavigatorController> {
@@ -36,7 +37,7 @@ class NavigatorScreen extends GetView<NavigatorController> {
             children: [
               Obx(
                 () => NavigatorItem(
-                  icon: Icons.home,
+                  icon: Ionicons.home_outline,
                   title: "Inicio",
                   isSelected: controller.currentIndex.value == 0,
                   onTap: () {
@@ -50,7 +51,7 @@ class NavigatorScreen extends GetView<NavigatorController> {
               ),
               Obx(
                 () => NavigatorItem(
-                  icon: Icons.list,
+                  icon: Ionicons.cube_outline,
                   title: "Productos",
                   isSelected: controller.currentIndex.value == 1,
                   onTap: () {
@@ -64,7 +65,7 @@ class NavigatorScreen extends GetView<NavigatorController> {
               ),
               Obx(
                 () => NavigatorItem(
-                  icon: Icons.add,
+                  icon: Ionicons.add_outline,
                   title: "Agregar",
                   isSelected: controller.currentIndex.value == 2,
                   onTap: () {
@@ -78,7 +79,7 @@ class NavigatorScreen extends GetView<NavigatorController> {
               ),
               Obx(
                 () => NavigatorItem(
-                  icon: Icons.qr_code,
+                  icon: Ionicons.barcode_outline,
                   title: "Escaner",
                   isSelected: controller.currentIndex.value == 3,
                   onTap: () {
@@ -99,6 +100,11 @@ class NavigatorScreen extends GetView<NavigatorController> {
         child: PageView(
           physics: NeverScrollableScrollPhysics(),
           controller: controller.pageController,
+          onPageChanged: (index) async {
+            if (index != 3) {
+              await controller.mobileScannerController.stop();
+            }
+          },
           children: [
             Obx(
               () => HomeScreen(
@@ -107,8 +113,10 @@ class NavigatorScreen extends GetView<NavigatorController> {
               ),
             ),
             ProductsScreen(),
-            CreateProductScreen(),
-            ScannerScreen(),
+            AddProductScreen(),
+            ScannerScreen(
+              mobileScannerController: controller.mobileScannerController,
+            ),
           ],
         ),
       ),

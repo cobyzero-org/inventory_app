@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_app/core/utils/constants.dart';
-import 'package:inventory_app/core/utils/palette.dart';
-import 'package:inventory_app/ui/widgets/app_text.dart';
 import 'package:sizer/sizer.dart';
 
 class AppInput extends StatefulWidget {
@@ -28,15 +25,12 @@ class AppInput extends StatefulWidget {
 class _AppInputState extends State<AppInput> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.label != null)
-          AppText(
-            text: widget.label ?? "",
-            color: Palette.gray,
-            fontWeight: FontWeight.bold,
-          ),
+          Text(widget.label ?? "", style: theme.textTheme.labelLarge),
         if (widget.label != null) SizedBox(height: 1.h),
         TextFormField(
           controller: widget.controller,
@@ -48,18 +42,10 @@ class _AppInputState extends State<AppInput> {
               vertical: 1.h,
               horizontal: 2.w,
             ),
-            fillColor: Palette.fill,
+            fillColor: theme.colorScheme.surface,
             isDense: true,
             hintText: widget.hintText,
-            hintStyle: TextStyle(color: Palette.gray.withValues(alpha: 0.5)),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(Constants.radius),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Palette.primary, width: 3),
-              borderRadius: BorderRadius.circular(Constants.radius),
-            ),
+            hintStyle: theme.textTheme.bodySmall,
           ),
           keyboardType: widget.keyboardType,
         ),

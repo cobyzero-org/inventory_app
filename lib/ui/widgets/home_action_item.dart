@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_app/core/utils/constants.dart';
 import 'package:inventory_app/core/utils/palette.dart';
-import 'package:inventory_app/ui/widgets/app_text.dart';
 import 'package:sizer/sizer.dart';
 
 class HomeActionItem extends StatelessWidget {
@@ -18,14 +17,21 @@ class HomeActionItem extends StatelessWidget {
   final Function() onTap;
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Palette.white,
-          border: Border.all(color: Palette.border),
+          color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(Constants.radius),
+          boxShadow: [
+            BoxShadow(
+              color: theme.shadowColor.withValues(alpha: 0.1),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +42,7 @@ class HomeActionItem extends StatelessWidget {
               child: Icon(icon, color: Palette.background),
             ),
             SizedBox(height: .5.h),
-            AppText.bold(text: title, fontSize: 16),
+            Text(title, style: theme.textTheme.titleMedium),
           ],
         ),
       ),
